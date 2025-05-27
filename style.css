@@ -1,8 +1,8 @@
 /* ==========================================================================
-   STYLE.CSS - Version Finale pour Correspondance Parfaite avec Inspiration.png
+   STYLE.CSS - Version Finale
    Auteur: Gemini AI
    Date: 27 Mai 2025
-   Objectif: Répliquer fidèlement le design fourni dans inspiration.png
+   Objectif: Répliquer fidèlement le design fourni par Paco CLERET
    ========================================================================== */
 
 /* --- Réinitialisation et Styles de Base --- */
@@ -34,14 +34,15 @@ body {
 
 /* --- Entête (Titre "Paco CLERET") --- */
 header {
-    margin-bottom: 35px; /* Espace significatif sous le titre */
+    margin-bottom: 40px; /* Espace significatif sous le titre */
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centrage du titre */
 }
 
 #main-title {
-    max-width: 360px; /* Taille précise de l'image du titre */
+    /* MODIFICATION: Augmentation de la taille du titre */
+    max-width: 450px; /* Taille précise de l'image du titre, augmentée */
     height: auto;
 }
 
@@ -49,9 +50,10 @@ header {
 #grid-container {
     display: grid;
     /* Colonnes: Gauche (très large) | Milieu | Droite */
-    grid-template-columns: 1.75fr 1fr 1fr; /* Ratios précis pour les colonnes */
+    grid-template-columns: 1.75fr 1.1fr 1.1fr; /* Ratios précis pour les colonnes */
     /* Lignes: Hauteurs spécifiques pour un contrôle maximal */
-    grid-template-rows: 190px 210px 160px; /* Hauteurs estimées de chaque rangée */
+    /* MODIFICATION: Ajustement des hauteurs de ligne pour mieux correspondre à l'inspiration */
+    grid-template-rows: 200px 220px 170px; /* Hauteurs estimées de chaque rangée */
     grid-template-areas:
         "card   hackthebox   contacts"
         "card   fiverr       paco-bg"
@@ -95,11 +97,17 @@ header {
 
 #social-block { /* Bloc icônes sociales (Youtube, etc.) */
     grid-area: social;
-    /* La hauteur est déterminée par la 3ème ligne de la grille (160px) */
+    /* La hauteur est déterminée par la 3ème ligne de la grille (170px) */
+    /* MODIFICATION: Assurer que le bloc lui-même est arrondi */
+    border-radius: 16px; /* Doit correspondre au .grid-item ou être spécifique */
+    background-color: #3b5998; /* Couleur de fond exemple si l'image n'en a pas, à ajuster */
 }
 #social-block img {
     object-fit: contain; /* Afficher l'image entière */
-    padding: 5px; /* Petite marge interne si besoin */
+    width: 100%;
+    height: 100%;
+    /* Le border-radius sur #social-block devrait suffire si l'image remplit le bloc.
+       Si l'image a son propre fond et doit être arrondie, il faudrait un border-radius ici aussi. */
 }
 
 /* --- Colonne 2 --- */
@@ -107,16 +115,16 @@ header {
     grid-area: hackthebox;
     background-color: #a2e8c3; /* Vert clair de l'inspiration */
     padding: 20px; /* Espace autour de l'icône interne */
-    /* La hauteur est déterminée par la 1ère ligne de la grille (190px) */
+    /* La hauteur est déterminée par la 1ère ligne de la grille (200px) */
 }
 #hackthebox-link img { /* L'icône cadenas elle-même */
     object-fit: contain;
-    height: 70%; /* L'icône prend 70% de la hauteur du bloc vert */
+    height: 75%; /* L'icône prend 75% de la hauteur du bloc vert */
 }
 
 #fiverr-link { /* Bloc Fiverr */
     grid-area: fiverr;
-    /* La hauteur est déterminée par la 2ème ligne de la grille (210px) */
+    /* La hauteur est déterminée par la 2ème ligne de la grille (220px) */
 }
 #fiverr-link img {
     object-fit: cover; /* L'image Fiverr remplit le bloc */
@@ -130,7 +138,7 @@ header {
     align-items: center;
     gap: 12px; /* Espace entre les icônes */
     padding: 10px;
-    /* La hauteur est déterminée par la 1ère ligne de la grille (190px) */
+    /* La hauteur est déterminée par la 1ère ligne de la grille (200px) */
 }
 #contact-icons a { /* Chaque lien d'icône */
     display: flex;
@@ -149,9 +157,9 @@ header {
     grid-area: paco-bg;
     background-image: url('images/PACO.png');
     background-repeat: repeat;
-    /* Taille du motif "PACO" : chaque instance de "PACO" sera clairement visible */
-    background-size: 130px; /* TRÈS IMPORTANT pour la visibilité du motif */
-    /* La hauteur est déterminée par la 2ème ligne de la grille (210px) */
+    /* MODIFICATION: Augmentation significative du background-size pour la visibilité du motif */
+    background-size: 150px; /* TRÈS IMPORTANT pour la visibilité du motif, valeur augmentée */
+    /* La hauteur est déterminée par la 2ème ligne de la grille (220px) */
     border-radius: 16px; /* Cohérence des bordures */
 }
 
@@ -164,14 +172,10 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* La hauteur est déterminée par la 3ème ligne de la grille (160px),
-       mais le padding et la taille de l'image interne vont influencer le rendu final.
-       Si l'image est plus grande que la cellule moins le padding, elle sera limitée. */
+    /* La hauteur est déterminée par la 3ème ligne de la grille (170px) */
 }
 #instagram-link img { /* L'image de l'iPhone (insta.png) */
     object-fit: contain;
-    /* Hauteur cible pour l'image, la rendant très proéminente.
-       Elle sera contrainte par la hauteur de son parent (#instagram-link) moins le padding. */
     height: 100%; /* L'image essaie de prendre toute la hauteur disponible dans le padding */
     max-width: 100%; /* Et toute la largeur disponible */
     min-height: 120px; /* Pour s'assurer qu'elle a une taille minimale même si la cellule est petite */
