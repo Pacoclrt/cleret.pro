@@ -1,3 +1,4 @@
+/* Global Reset and Body Styling */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -5,25 +6,25 @@ body {
     background-image:
         linear-gradient(to right, rgba(220, 220, 220, 0.5) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(220, 220, 220, 0.5) 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-size: 20px 20px; /* Grid pattern */
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Aligner en haut pour les pages plus longues */
+    align-items: flex-start; /* Align to top for potentially long content */
     min-height: 100vh;
-    padding: 20px;
+    padding: 25px; /* Overall page padding */
     box-sizing: border-box;
 }
 
 .container {
     width: 100%;
-    max-width: 750px;
+    max-width: 800px; /* Légère augmentation pour accommoder les plus grandes tailles */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 header {
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Space below title */
     display: flex;
     justify-content: center;
 }
@@ -33,33 +34,34 @@ header {
     height: auto;
 }
 
+/* Grid Container Setup */
 #grid-container {
     display: grid;
-    grid-template-columns: 1.5fr 1.1fr 1.1fr; /* Card | Hackbox/Fiverr | Contacts/Paco/Insta */
-    grid-template-rows: auto auto auto;    /* Hauteur des lignes automatique */
+    grid-template-columns: 1.5fr 1.2fr 1.2fr; /* Ajustement des proportions des colonnes */
+    grid-template-rows: auto auto auto;
     grid-template-areas:
         "card   hackthebox   contacts"
         "card   fiverr       paco-bg"
-        "social .            insta"; /* Cellule vide sous fiverr, insta sous paco-bg */
-    gap: 15px;
+        "social .            insta";
+    gap: 18px; /* Léger ajustement de l'espacement */
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
 }
 
+/* Default Grid Item Styling */
 .grid-item {
-    border-radius: 8px;
+    border-radius: 10px; /* Augmentation du radius pour un look plus doux */
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     color: inherit;
-    position: relative;
     width: 100%;
-    height: auto; /* Laisser la hauteur s'adapter au contenu ou à des règles spécifiques */
-    min-height: 50px; /* Eviter que les cellules vides ou petites ne s'effondrent */
+    height: 100%;
     box-sizing: border-box;
+    background-color: transparent; /* Rendu transparent par défaut, couleur ajoutée si besoin */
 }
 
 .grid-item img {
@@ -68,101 +70,117 @@ header {
     display: block;
 }
 
-/* ----- Colonne 1 ----- */
+/* Specific Item Styling based on inspiration.png and feedback */
+
+/* --- Column 1 Items --- */
 #card-item {
     grid-area: card;
-    align-self: stretch; /* Pour que la carte s'étende sur ses 2 lignes */
+    align-self: stretch;
 }
 #card-item img {
     object-fit: cover;
-    height: 100%;
 }
 
 #social-block {
     grid-area: social;
-    min-height: 100px; /* Donner une hauteur de base au bloc social */
+    min-height: 130px; /* Hauteur ajustée */
 }
 #social-block img {
     object-fit: contain;
 }
 
-/* ----- Colonne 2 ----- */
+/* --- Column 2 Items --- */
 #hackthebox-link {
     grid-area: hackthebox;
     background-color: #a2e8c3;
-    padding: 10px;
-    height: 110px; /* Hauteur ajustée */
+    padding: 15px; /* Augmentation du padding interne */
+    /* MODIFICATION: Augmentation de la hauteur du bloc HackTheBox */
+    height: 150px;
 }
 #hackthebox-link img {
     object-fit: contain;
-    height: 70%; /* Taille de l'icône dans son conteneur */
+    /* MODIFICATION: Augmentation de la taille de l'icône dans le bloc */
+    height: 80%;
 }
 
 #fiverr-link {
     grid-area: fiverr;
-    height: 130px; /* Hauteur ajustée */
+    /* MODIFICATION: Augmentation de la hauteur du bloc Fiverr */
+    height: 160px;
 }
 #fiverr-link img {
-    object-fit: contain; /* L'image Fiverr a son propre fond, contain pour tout voir */
+    object-fit: contain;
     width: 100%;
     height: 100%;
 }
 
-/* ----- Colonne 3 ----- */
+/* --- Column 3 Items --- */
 #contact-icons {
     grid-area: contacts;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 10px;
-    padding: 10px 5px;
-    height: 110px; /* Aligner en hauteur avec hackthebox */
+    gap: 15px;
+    padding: 10px;
+    /* MODIFICATION: Hauteur du conteneur des icônes alignée sur HackTheBox */
+    height: 150px;
+}
+#contact-icons a {
+    padding: 5px;
 }
 #contact-icons a img {
-    width: 32px;
-    height: 32px;
+    /* MODIFICATION: Énorme augmentation de la taille des icônes */
+    width: 55px;
+    height: 55px;
     object-fit: contain;
 }
 #phone-link .icon-placeholder.phone-icon {
-    font-size: 30px;
+    /* MODIFICATION: Énorme augmentation de la taille de l'icône téléphone */
+    font-size: 50px; /* Ajuster pour correspondre visuellement aux autres icônes */
     color: #8e44ad;
     line-height: 1;
 }
-/* Retrait de l'animation sur le téléphone */
-/* #phone-link { transition: transform 0.2s ease-in-out; } */
-/* #phone-link:hover { transform: translateY(-4px); } */
 
 #paco-background-container {
     grid-area: paco-bg;
     background-image: url('images/PACO.png');
     background-repeat: repeat;
-    background-size: 50px; /* Taille du motif "PACO" plus petite */
-    height: 130px; /* Hauteur ajustée, similaire à Fiverr */
-    border-radius: 8px; /* S'assurer que le fond respecte le radius si pas d'image directe */
+    background-size: 50px; /* Taille du motif "PACO" */
+    /* MODIFICATION: Hauteur alignée sur Fiverr */
+    height: 160px;
+    border-radius: 10px;
 }
 
 #instagram-link {
     grid-area: insta;
-    align-self: end; /* S'assurer qu'il est en bas de sa cellule si la ligne est plus haute */
+    align-self: stretch; /* Pour que le fond bleu prenne toute la hauteur de la cellule */
+    /* MODIFICATION: Ajout d'un fond bleu clair et padding */
+    background-color: #d6eaff; /* Bleu clair pour le fond */
+    padding: 15px; /* Espace entre le bord bleu et l'image de l'iPhone */
+    border-radius: 10px; /* Garder la cohérence */
+    display: flex; /* Pour centrer l'image si elle est plus petite que le padding */
+    justify-content: center;
+    align-items: center;
 }
 #instagram-link img {
     object-fit: contain;
-    max-height: 250px; /* Hauteur max pour l'image de l'iPhone */
-}
-/* Animation sur l'image iPhone */
-#instagram-link {
+    /* MODIFICATION: Énorme augmentation de la taille de l'image iPhone */
+    max-height: 100%; /* L'image prendra au max la hauteur du padding */
+    height: 330px; /* Taille cible pour l'image, sera limitée par max-height si besoin */
+    /* MODIFICATION: Animation uniquement sur l'image */
     transition: transform 0.2s ease-in-out;
 }
-#instagram-link:hover {
-    transform: translateY(-5px);
+#instagram-link img:hover {
+    /* L'animation de montée est appliquée à l'image, pas au conteneur #instagram-link */
+    transform: translateY(-8px); /* Lift effect un peu plus prononcé */
 }
 
-
+/* Footer Styling */
 footer {
     margin-top: 30px;
     text-align: left;
     width: 100%;
-    max-width: 750px;
+    max-width: 800px;
     color: #333333;
     font-size: 0.9em;
     padding-left: 10px;
@@ -172,29 +190,34 @@ footer p {
     margin: 0;
 }
 
-/* ----- Responsive ----- */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
     .container {
         max-width: 95%;
     }
     #grid-container {
-        grid-template-columns: 1fr 1fr; /* Deux colonnes */
-        grid-template-rows: auto auto auto auto auto; /* Plus de lignes nécessaires */
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto auto auto;
         grid-template-areas:
-            "card hackthebox"
-            "card contacts"
-            "social fiverr"
-            ". paco-bg"     /* Ajustement pour PACO */
-            "insta insta";  /* Insta prend toute la largeur en bas */
-        gap: 10px;
+            "card       hackthebox"
+            "card       contacts"
+            "social     fiverr"
+            "paco-bg    paco-bg"
+            "insta      insta";
+        gap: 12px;
     }
-    #paco-background-container, #hackthebox-link, #fiverr-link, #contact-icons {
-        height: 100px; /* Uniformiser un peu les hauteurs pour tablettes */
+    #hackthebox-link, #fiverr-link, #contact-icons, #paco-background-container {
+        height: 120px; /* Hauteurs ajustées pour tablette */
     }
-    #instagram-link img {
-        max-height: 200px;
-        margin: 0 auto;
-    }
+    #contact-icons a img { width: 40px; height: 40px; }
+    #phone-link .icon-placeholder.phone-icon { font-size: 38px; }
+
+    #instagram-link { padding: 10px; }
+    #instagram-link img { height: 250px; }
+     #social-block { min-height: 100px; }
 }
 
 @media (max-width: 480px) {
@@ -202,9 +225,9 @@ footer p {
         padding: 10px;
     }
     #grid-container {
-        grid-template-columns: 1fr; /* Une seule colonne */
-        grid-template-rows: auto; /* Laisser les lignes s'ajuster */
-        grid-template-areas: /* Ordre pour mobile */
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
             "card"
             "hackthebox"
             "contacts"
@@ -216,16 +239,16 @@ footer p {
     }
     #main-title {
         width: 90%;
-        margin: 0 auto;
+        margin: 10px auto 15px;
     }
-    #paco-background-container, #hackthebox-link, #fiverr-link, #contact-icons, #social-block {
-        height: 120px; /* Hauteurs pour mobile */
+    #hackthebox-link, #fiverr-link, #contact-icons, #paco-background-container, #social-block {
+        height: 110px;
+        min-height: unset;
     }
-    #contact-icons {
-        flex-direction: row;
-        justify-content: space-evenly;
-    }
-    #instagram-link img {
-        max-height: 280px; /* Peut être plus grand sur mobile si en pleine largeur */
-    }
+    #contact-icons a img { width: 35px; height: 35px; }
+    #phone-link .icon-placeholder.phone-icon { font-size: 33px; }
+
+    #contact-icons { flex-direction: row; justify-content: space-evenly; }
+    #instagram-link { padding: 10px; }
+    #instagram-link img { height: auto; max-height: 300px; width: auto; max-width: 100%;}
 }
