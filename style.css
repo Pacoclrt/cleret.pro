@@ -1,29 +1,53 @@
 /* ==========================================================================
-   STYLE.CSS - Version Final by Paco CLERET ft Gemini IA
+   STYLE.CSS - Version Finale
    ========================================================================== */
+
+/* --- Variables CSS (Custom Properties) --- */
+:root {
+    --font-primary: 'Arial', Helvetica, sans-serif;
+    --color-background: #ffffff;
+    --color-grid-line: #e9e9e9; /* Couleur subtile pour le quadrillage */
+    --color-text-default: #333333;
+    --color-footer-text: #4a4a4a;
+
+    /* Couleurs spécifiques des éléments (basées sur inspiration.png) */
+    --color-hackthebox-bg: #a2e8c3;
+    --color-fiverr-bg: #003f21; /* Couleur de fond de l'image Fiverr */
+    --color-instagram-bg: #d6eaff; /* Bleu clair pour le cadre de l'iPhone */
+
+    /* Dimensions et espacements clés */
+    --grid-gap: 22px; /* Espacement principal entre les blocs de la grille */
+    --border-radius-main: 18px; /* Rayon de bordure principal pour les blocs */
+    --max-width-container: 850px; /* Largeur maximale du contenu principal */
+
+    /* Hauteurs de ligne spécifiques pour la grille principale (Desktop) */
+    --grid-row1-height: 195px;
+    --grid-row2-height: 205px;
+    --grid-row3-height: 390px;
+}
 
 /* --- Styles Globaux et Fond de Page --- */
 body {
     margin: 0;
-    font-family: 'Arial', Helvetica, sans-serif;
-    background-color: #ffffff;
+    font-family: var(--font-primary);
+    background-color: var(--color-background);
     background-image:
-        linear-gradient(to right, #f0f0f0 1px, transparent 1px),
-        linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
-    background-size: 26px 26px; /* Densité du quadrillage ajustée */
+        linear-gradient(to right, var(--color-grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--color-grid-line) 1px, transparent 1px);
+    background-size: 28px 28px; /* Densité du quadrillage */
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding: 30px 15px; /* Padding global de la page */
+    padding: 35px 20px; /* Padding global */
     box-sizing: border-box;
-    color: #333;
+    color: var(--color-text-default);
 }
 
 /* --- Conteneur Principal --- */
 .container {
     width: 100%;
-    max-width: 840px; /* Largeur ajustée pour les proportions de l'inspiration */
+    max-width: var(--max-width-container);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,40 +55,38 @@ body {
 
 /* --- Entête (Titre "Paco CLERET") --- */
 header {
-    margin-bottom: 35px; /* Espace sous le titre */
+    margin-bottom: 40px; /* Espace sous le titre */
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
 #main-title {
-    /* MODIFICATION: Augmentation de la taille et impact visuel du titre */
-    max-width: 480px; /* Taille considérablement augmentée pour correspondre à l'inspiration */
+    max-width: 490px; /* Taille augmentée pour correspondre à l'impact visuel de l'inspiration */
     height: auto;
+    display: block; /* S'assurer que l'image est un bloc pour le centrage */
 }
 
 /* --- Grille Principale --- */
 #grid-container {
     display: grid;
-    /* MODIFICATION: Ratios des colonnes affinés pour l'exactitude */
-    grid-template-columns: 1.8fr 1fr 1fr;
-    /* MODIFICATION: Hauteurs de ligne très spécifiques basées sur l'inspiration */
-    grid-template-rows: 190px 200px 380px; /* Hauteurs: L1 (HackTheBox/Contacts), L2 (Fiverr/PACO), L3 (Social/Insta) */
+    grid-template-columns: 1.7fr 1fr 1fr; /* Ratios des colonnes affinés */
+    grid-template-rows: var(--grid-row1-height) var(--grid-row2-height) var(--grid-row3-height);
     grid-template-areas:
         "card   hackthebox   contacts"
         "card   fiverr       paco-bg"
-        "social .            insta";
-    gap: 25px; /* Espacement précis entre les blocs */
+        "social .            insta";    /* Cellule vide sous Fiverr */
+    gap: var(--grid-gap);
     width: 100%;
     box-sizing: border-box;
 }
 
 /* --- Style par Défaut des Éléments de la Grille --- */
 .grid-item {
-    border-radius: 18px; /* Bordures arrondies bien visibles */
-    overflow: hidden;
+    border-radius: var(--border-radius-main);
+    overflow: hidden; /* Crucial pour que le contenu respecte le border-radius */
     display: flex;
-    flex-direction: column; /* Permet un meilleur contrôle du contenu interne si besoin */
+    flex-direction: column; /* Pour un meilleur contrôle du contenu si plusieurs enfants */
     justify-content: center;
     align-items: center;
     text-decoration: none;
@@ -72,66 +94,58 @@ header {
     width: 100%;
     height: 100%; /* Les items remplissent leur cellule de grille */
     box-sizing: border-box;
-    background-color: transparent; /* Transparence par défaut */
-    position: relative; /* Pour positionnement absolu d'enfants si jamais */
+    background-color: transparent; /* Fond transparent par défaut, sera surchargé si besoin */
+    position: relative; /* Pour un positionnement avancé si nécessaire */
 }
 
-.grid-item img.fill-container { /* Classe utilitaire pour images devant remplir leur conteneur */
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* --- Stylisation Spécifique des Blocs --- */
+/* --- Stylisation Spécifique de Chaque Bloc --- */
 
 /* --- Colonne 1 --- */
 #card-item {
     grid-area: card;
-    align-self: stretch; /* S'assure qu'il remplit les deux rangées assignées */
+    align-self: stretch; /* S'étend sur les deux rangées assignées */
 }
-#card-item img { /* L'image de la carte remplit le bloc #card-item */
+#card-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* L'image de la carte remplit le bloc */
 }
 
 #social-block {
     grid-area: social;
-    /* MODIFICATION: Assurer que ce bloc est arrondi */
-    border-radius: 18px; /* Cohérence avec .grid-item */
-    /* La hauteur de ce bloc est déterminée par la 3ème ligne de la grille (380px),
-       mais son contenu visuel est plus petit et centré par flex.
-       Si l'image icone.png a son propre fond bleu et coins arrondis, c'est elle qui primera. */
+    border-radius: var(--border-radius-main); /* Assurer l'arrondi du bloc lui-même */
+    /* La couleur de fond sera celle de l'image icone.png si elle en a une.
+       Si icone.png est transparente et que le bloc doit avoir un fond bleu, ajoutez ici:
+       background-color: #2d4373; (couleur approximative du fond de icone.png) */
 }
-#social-block img {
-    object-fit: contain;
-    max-width: 90%; /* Pour ne pas coller aux bords si le bloc est plus grand */
-    max-height: 90%;
+#social-block img { /* L'image icone.png */
+    object-fit: contain; /* Afficher l'image entière, respecter ses proportions */
+    max-width: 100%; /* Ne pas dépasser la largeur du bloc */
+    max-height: 100%; /* Ne pas dépasser la hauteur du bloc */
+    /* Si icone.png elle-même doit être arrondie (et non son conteneur),
+       ajoutez border-radius ici. Mais inspiration.png montre un bloc arrondi. */
 }
 
 /* --- Colonne 2 --- */
 #hackthebox-link {
     grid-area: hackthebox;
-    background-color: #a2e8c3; /* Vert clair de l'inspiration */
-    padding: 20px;
-    /* Hauteur définie par grid-template-rows (190px) */
+    background-color: var(--color-hackthebox-bg);
+    padding: 20px; /* Espace interne */
 }
-#hackthebox-link img {
+#hackthebox-link img { /* L'icône cadenas */
     object-fit: contain;
-    /* MODIFICATION: Taille de l'icône HackTheBox pour plus d'impact */
-    height: 70%;
-    max-width: 70%;
+    height: 75%; /* Taille de l'icône par rapport à son conteneur */
+    max-width: 75%;
 }
 
 #fiverr-link {
     grid-area: fiverr;
-    background-color: #003f21; /* Couleur de fond intrinsèque de l'image Fiverr */
-    /* Hauteur définie par grid-template-rows (200px) */
+    background-color: var(--color-fiverr-bg); /* Fond vert foncé de l'image Fiverr */
 }
-#fiverr-link img {
-    object-fit: contain; /* Pour voir tout le logo Fiverr */
-    width: 100%;
-    height: 100%;
+#fiverr-link img { /* L'image du logo Fiverr */
+    object-fit: contain; /* Afficher tout le logo sans déformation */
+    width: 80%; /* Ajuster pour un padding visuel autour du logo */
+    height: 80%;
 }
 
 /* --- Colonne 3 --- */
@@ -141,66 +155,59 @@ header {
     flex-direction: row; /* Icônes alignées horizontalement */
     justify-content: space-around;
     align-items: center;
-    gap: 15px; /* Espace entre les icônes */
-    padding: 10px;
-    /* Hauteur définie par grid-template-rows (190px) */
+    gap: 10px; /* Espace réduit entre les icônes pour plus de compacité */
+    padding: 15px 5px; /* Padding vertical et horizontal */
 }
-#contact-icons a {
+#contact-icons a { /* Chaque lien/icône */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* MODIFICATION: Taille des icônes revue pour impact maximal et cohérence */
-    width: 75px;
-    height: 75px;
+    width: 78px;  /* Taille précise des icônes pour correspondre à l'inspiration */
+    height: 78px;
 }
 #contact-icons a img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Crucial pour des icônes de tailles sources différentes */
+    object-fit: contain; /* S'assure que l'image est entièrement visible et proportionnée */
 }
 
 #paco-background-container {
     grid-area: paco-bg;
     background-image: url('images/PACO.png');
     background-repeat: repeat;
-    /* MODIFICATION: Taille du motif PACO pour lisibilité et densité parfaites */
-    background-size: 90px; /* Chaque "PACO" sera bien visible */
-    /* Hauteur définie par grid-template-rows (200px) */
-    border-radius: 18px; /* S'assurer que le fond est aussi arrondi */
+    background-size: 100px; /* Taille du motif "PACO" pour une bonne visibilité et densité */
+    border-radius: var(--border-radius-main); /* Cohérence des arrondis */
 }
 
 #instagram-link { /* Le conteneur bleu pour l'iPhone */
     grid-area: insta;
     align-self: stretch; /* Remplit la cellule de la 3ème ligne */
-    background-color: #d6eaff; /* Bleu clair cadre */
-    /* MODIFICATION: Padding ajusté pour un encadrement parfait de l'image */
-    padding: 20px;
-    border-radius: 18px;
+    background-color: var(--color-instagram-bg);
+    padding: 22px; /* Padding précis pour l'encadrement de l'iPhone */
+    border-radius: var(--border-radius-main);
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Hauteur définie par grid-template-rows (380px) */
 }
 #instagram-link img { /* L'image insta.png */
     object-fit: contain;
-    /* MODIFICATION: L'image prendra la place disponible dans le padding */
-    width: 100%;
-    height: 100%;
-    transition: transform 0.2s ease-out;
+    width: 100%;  /* L'image prend toute la largeur disponible dans le padding */
+    height: 100%; /* L'image prend toute la hauteur disponible dans le padding */
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animation avec rebond */
 }
 #instagram-link img:hover {
-    transform: translateY(-8px); /* Animation de survol sur l'image uniquement */
+    transform: translateY(-10px); /* Soulèvement de l'image uniquement */
 }
 
 /* --- Pied de Page --- */
 footer {
-    margin-top: 40px;
+    margin-top: 50px; /* Espace conséquent au-dessus du footer */
     text-align: left;
     width: 100%;
-    max-width: 840px; /* Cohérence avec .container */
-    color: #2c3e50;
-    font-size: 0.9em;
-    padding: 0 10px; /* S'aligne avec le padding de la grille */
+    max-width: var(--max-width-container);
+    color: var(--color-footer-text);
+    font-size: 0.88em; /* Taille de police ajustée */
+    padding: 0 10px; /* Léger padding pour alignement avec la grille */
     box-sizing: border-box;
 }
 footer p {
@@ -208,12 +215,16 @@ footer p {
 }
 
 /* --- Ajustements Responsives --- */
-@media (max-width: 880px) { /* Point de rupture un peu plus élevé */
+@media (max-width: 880px) { /* Point de rupture pour tablettes */
     body { padding: 25px 15px; }
-    .container { max-width: 100%; }
+    :root { /* Ajustement des hauteurs de ligne pour tablettes */
+        --grid-row1-height: auto;
+        --grid-row2-height: auto;
+        --grid-row3-height: auto;
+    }
     #grid-container {
         grid-template-columns: 1fr 1fr; /* 2 colonnes */
-        grid-template-rows: auto; /* Hauteur auto pour flexibilité */
+        grid-template-rows: auto; /* Hauteurs de lignes flexibles */
         grid-template-areas:
             "card        card"
             "hackthebox  contacts"
@@ -222,20 +233,25 @@ footer p {
             "insta       insta";
         gap: 20px;
     }
-    #hackthebox-link, #contact-icons, #fiverr-link, #paco-background-container, #social-block, #instagram-link {
-        min-height: 160px; /* Hauteur minimale pour la visibilité */
-        height: auto; /* Permet de grandir si le contenu est plus grand */
-    }
-    #social-block { min-height: 150px;}
-    #contact-icons a { width: 65px; height: 65px; }
-    #instagram-link { padding: 15px; min-height: 300px;} /* Ajuster pour que l'image ait de la place */
-    #instagram-link img { height:auto; max-height: 100%;}
+    /* Hauteurs minimales pour assurer la visibilité sur tablette */
+    #card-item { min-height: 350px; }
+    #hackthebox-link, #contact-icons { min-height: 170px; }
+    #fiverr-link, #paco-background-container { min-height: 180px; }
+    #social-block { min-height: 160px; }
+    #instagram-link { min-height: 320px; padding: 18px; }
+
+    #contact-icons a { width: 70px; height: 70px; }
+    #main-title { max-width: 400px; }
 }
 
-@media (max-width: 560px) { /* Point de rupture pour mobile */
+@media (max-width: 560px) { /* Point de rupture pour mobiles */
     body { padding: 20px 10px; }
-    header { margin-bottom: 25px; }
-    #main-title { max-width: 80%; }
+    header { margin-bottom: 30px; }
+    #main-title { max-width: 90%; } /* Titre prend presque toute la largeur */
+    :root {
+        --grid-gap: 15px;
+        --border-radius-main: 15px;
+    }
     #grid-container {
         grid-template-columns: 1fr; /* 1 colonne */
         grid-template-areas:
@@ -246,15 +262,13 @@ footer p {
             "paco-bg"
             "social"
             "insta";
-        gap: 15px;
     }
-    #card-item { min-height: 250px; }
-    #hackthebox-link, #fiverr-link, #paco-background-container, #social-block, #contact-icons {
-        min-height: 140px;
-    }
-    #contact-icons { padding: 10px 0; flex-direction: row; justify-content: space-evenly; }
-    #contact-icons a { width: 60px; height: 60px; }
-    #instagram-link { padding: 12px; min-height: auto; height: 320px; /* Hauteur fixe pour l'iPhone sur mobile */}
-    #instagram-link img { height: 100%; }
-    footer { margin-top: 30px; text-align: center; }
+    /* Hauteurs minimales pour mobile */
+    #card-item { min-height: 300px; }
+    #hackthebox-link, #fiverr-link, #paco-background-container, #social-block { min-height: 150px; }
+    #contact-icons { min-height: 100px; padding: 10px 0; flex-direction: row; justify-content: space-evenly; }
+    #contact-icons a { width: 65px; height: 65px; }
+    #instagram-link { min-height: 340px; /* iPhone peut prendre plus de hauteur sur mobile */ padding: 15px; }
+    #instagram-link img { max-height: 100%; }
+    footer { margin-top: 35px; text-align: center; }
 }
