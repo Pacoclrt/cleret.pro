@@ -1,7 +1,12 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #001f3f; /* Couleur de fond bleu foncé approximative de l'inspiration */
+    /* 1. Background Change: White with a light grid */
+    background-color: #ffffff;
+    background-image:
+        linear-gradient(to right, rgba(220, 220, 220, 0.5) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(220, 220, 220, 0.5) 1px, transparent 1px);
+    background-size: 20px 20px; /* Adjust grid square size as needed */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +17,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 900px; /* Ajustez selon la largeur désirée pour le design */
+    max-width: 750px; /* Adjusted max-width for a layout closer to inspiration.png */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,191 +36,174 @@ header {
 
 #grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Crée une grille responsive */
+    /* 2. Layout Modification: Explicit columns and areas */
+    grid-template-columns: 1.5fr 1fr 1fr; /* Card column wider, other two equal */
+    grid-template-rows: auto auto auto; /* Rows adapt to content height */
+    grid-template-areas:
+        "card hackthebox contacts"
+        "card fiverr     paco-bg"
+        "social insta    paco-bg";
     gap: 15px;
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    /* Configuration pour essayer de matcher inspiration.png */
-    /* Ceci est une approximation, vous devrez peut-être l'ajuster */
-    grid-template-areas:
-        "card hackthebox contacts"
-        "card fiverr paco-bg"
-        "social insta paco-bg";
-    /* Pour un layout plus simple si celui ci-dessus est complexe à gérer avec auto-fit: */
-    /* grid-template-columns: repeat(3, 1fr); */ /* Par exemple, pour 3 colonnes */
 }
 
 .grid-item {
-    background-color: #f0f0f0; /* Couleur de fond par défaut pour les items */
     border-radius: 8px;
-    overflow: hidden; /* Pour que les images ne dépassent pas les coins arrondis */
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     color: inherit;
-    position: relative; /* Pour le positionnement absolu des éléments enfants si nécessaire */
+    position: relative;
+    width: 100%; /* Ensure items take full width of their grid cell */
+    height: 100%; /* Ensure items take full height of their grid cell */
+    box-sizing: border-box;
 }
 
 .grid-item img {
     max-width: 100%;
     max-height: 100%;
     display: block;
-    object-fit: cover; /* ou 'contain' selon le rendu souhaité */
 }
 
-/* Assignation des zones de la grille */
+/* Specific item styling */
 #card-item {
     grid-area: card;
-    background-color: transparent; /* Le fond est l'image elle-même */
 }
 #card-item img {
-    object-fit: contain; /* Pour voir toute la carte */
-    width: 100%; /* Ajuster pour que ça ressemble à l'inspiration */
-    height: auto;
+    object-fit: cover; /* Cover to fill, might crop if aspect ratio mismatches cell */
 }
-
 
 #hackthebox-link {
     grid-area: hackthebox;
-    background-color: #a2e8c3; /* Vert clair de l'inspiration */
-    padding: 10px;
-    box-sizing: border-box;
+    background-color: #a2e8c3; /* Light green background */
+    padding: 15px; /* Add some padding around the icon within the green box */
 }
 #hackthebox-link img {
-     width: 80px; /* Taille de l'icône cadenas */
-     height: 80px;
-     object-fit: contain;
+    object-fit: contain;
+    width: 70%; /* Adjust icon size within its box */
+    height: auto;
 }
 
-
+/* 3. Icon Styling: Remove colored backgrounds, adjust icon sizes */
 #contact-icons {
     grid-area: contacts;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: transparent; /* Pas de fond pour le conteneur global des icones */
-    gap: 10px; /* Espace entre les icônes */
-    padding: 10px;
+    gap: 15px; /* Space between icons */
+    padding: 10px; /* Padding for the container */
 }
 
-#contact-icons a {
+#contact-icons a { /* Styling for the <a> tag wrapping each icon */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px; /* Taille des cercles */
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
+    /* No background, no fixed width/height for <a>, let content dictate */
 }
-#contact-icons a img {
-    width: 60%; /* Ajuster la taille de l'icône dans le cercle */
-    height: 60%;
+
+#contact-icons a img { /* Styling for the icon image itself */
+    width: 35px;
+    height: 35px;
     object-fit: contain;
 }
 
-#discord-link {
-    background-color: #7289da; /* Couleur Discord */
-}
-#phone-link {
-    background-color: #9b59b6; /* Violet pour le téléphone */
-    font-size: 24px; /* Taille de l'emoji téléphone */
-    color: white;
-    text-decoration: none;
-}
-.phone-icon {
-    line-height: 50px; /* Centrer verticalement l'emoji */
-}
-#mail-link {
-    background-color: #d3a280; /* Orange/Marron pour mail */
+#phone-link .icon-placeholder.phone-icon { /* For the emoji phone icon */
+    font-size: 32px; /* Adjust size */
+    color: #8e44ad; /* Purple color for phone based on common icon colors */
+    line-height: 1; /* Ensure proper vertical alignment for emoji */
 }
 
+/* 4. Phone Icon Hover Animation */
+#phone-link {
+    transition: transform 0.2s ease-in-out;
+}
+#phone-link:hover {
+    transform: translateY(-4px); /* Lifts the icon up slightly */
+}
 
 #paco-background-container {
     grid-area: paco-bg;
     background-image: url('images/PACO.png');
     background-repeat: repeat;
-    background-size: auto; /* ou une taille spécifique comme '100px' */
+    background-size: 80px; /* Adjust pattern size if needed */
 }
-
 
 #social-block {
     grid-area: social;
-    background-color: transparent; /* Fond de l'image elle-même */
 }
 #social-block img {
-    object-fit: contain;
-    width: 100%;
-    height: auto;
+    object-fit: contain; /* Ensure full image is visible */
 }
-
 
 #fiverr-link {
     grid-area: fiverr;
-    background-color: #003f21; /* Vert foncé Fiverr, mais l'image a déjà un fond */
 }
 #fiverr-link img {
-    object-fit: contain; /* L'image Fiverr a son propre fond vert */
+    object-fit: cover; /* Fiverr logo has its own background */
 }
-
 
 #instagram-link {
     grid-area: insta;
-    background-color: transparent; /* Fond de l'image elle-même */
 }
 #instagram-link img {
-    width: auto; /* L'image insta a une forme de téléphone */
-    height: 100%;
-    max-height: 250px; /* Limiter la hauteur pour la proportion */
-    object-fit: contain;
+    object-fit: contain; /* To preserve aspect ratio of the phone image */
+    max-height: 280px; /* Optional: constrain max height if it gets too tall */
 }
-
 
 footer {
     margin-top: 30px;
-    text-align: left;
-    width: 100%;
-    color: #000000; /* Noir pour le copyright */
+    text-align: left; /* Align to the visual left of the main content block */
+    width: 100%; /* Match container width for alignment */
+    max-width: 750px; /* Match .container max-width */
+    color: #333333; /* Darker text for better readability on white grid */
     font-size: 0.9em;
-    padding-left: 10px; /* Aligner avec la grille si possible */
+    padding-left: 10px; /* Align with grid padding */
+    box-sizing: border-box;
 }
 footer p {
     margin: 0;
 }
 
-/* Adaptation pour que la grille ressemble plus à inspiration.png */
-/* Vous devrez probablement ajuster les hauteurs et largeurs manuellement */
-/* ou utiliser des fractions (fr) plus précises pour les colonnes/rangées */
-
-@media (max-width: 768px) { /* Pour les écrans plus petits */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        max-width: 95%;
+    }
     #grid-container {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        grid-template-areas: /* Réorganiser pour les petits écrans si nécessaire */
-            "card card"
-            "hackthebox contacts"
+        grid-template-columns: 1fr 1fr; /* Two columns for medium screens */
+        grid-template-areas:
+            "card hackthebox"
+            "card contacts"
             "fiverr paco-bg"
-            "social insta";
-    }
-    #contact-icons {
-        flex-direction: column; /* Empiler les icônes verticalement sur petit écran */
-        gap: 5px;
-    }
-    #contact-icons a {
-        width: 40px;
-        height: 40px;
-    }
-    .phone-icon {
-        line-height: 40px;
+            "social paco-bg"
+            "insta insta"; /* Instagram takes full width at bottom */
     }
     #instagram-link img {
-        max-height: 200px;
+        max-height: 250px; /* Adjust for smaller screens */
+        margin: 0 auto; /* Center if it doesn't fill width */
+    }
+    #contact-icons {
+        gap: 10px; /* Reduce gap slightly */
+    }
+    #contact-icons a img {
+        width: 30px;
+        height: 30px;
+    }
+    #phone-link .icon-placeholder.phone-icon {
+        font-size: 28px;
     }
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 10px; /* Reduce body padding */
+    }
     #grid-container {
-        grid-template-columns: 1fr; /* Une seule colonne pour les très petits écrans */
+        grid-template-columns: 1fr; /* Single column for small screens */
         grid-template-areas:
             "card"
             "hackthebox"
@@ -224,13 +212,18 @@ footer p {
             "paco-bg"
             "social"
             "insta";
+        gap: 10px; /* Reduce gap */
     }
-     #main-title {
-        content: url('images/Paco CLERET.png'); /* Assurez-vous que l'image est adaptée */
-        width: 80%; /* Réduire la taille du titre */
+    #main-title {
+        width: 90%;
         margin: 0 auto;
     }
     #contact-icons {
-        flex-direction: row; /* Remettre en ligne pour une seule colonne */
+        flex-direction: row; /* Keep icons in a row even in single column */
+        justify-content: space-evenly; /* Spread them out */
+        padding: 5px 0;
+    }
+    #instagram-link img {
+        max-height: 220px;
     }
 }
