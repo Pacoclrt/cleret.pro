@@ -1,157 +1,122 @@
 body {
     margin: 0;
-    padding: 0;
-    background-color: #2196F3; /* Using a blue color similar to the background pattern */
-    font-family: sans-serif; /* Or the specific font used in the image if known */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    position: relative; /* Needed for absolute positioning of elements */
-    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    background: #fff;
+    font-family: Arial, sans-serif;
 }
 
-/* Background pattern - assuming it's applied to the body or a main container */
-/* If the pattern is a separate image element in HTML, adjust selector */
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('images/paco_pattern.png'); /* Assuming the pattern image is named paco_pattern.png */
-    background-repeat: repeat;
-    opacity: 0.1; /* Adjust opacity if the pattern is semi-transparent */
-    z-index: -1; /* Place behind other content */
-}
-
-
-/* Style for the main title "Paco CLERET" */
-/* Assuming it's an h1 tag or similar, and the image is used as a background or is the element itself */
-/* If the title is an image tag in HTML: */
-.main-title img {
-    display: block; /* Remove extra space below the image */
-    margin: 40px auto 20px auto; /* Center the image and add some margin */
-    width: 80%; /* Adjust size as needed */
-    max-width: 600px; /* Max width for larger screens */
-    height: auto;
-}
-
-/* If the title is text styled to look like the image (less likely based on the provided image file): */
-/*
-.main-title {
+.main-container {
+    width: 900px;
+    margin: 0 auto;
     text-align: center;
-    color: white; // Or the exact blue color
-    font-size: 4em; // Adjust size
-    margin-top: 40px;
-    margin-bottom: 20px;
-    // Add text-shadow or other styles to mimic the image
-}
-*/
-
-
-/* Container for the various images/cards */
-/* This will need to be a flex or grid container, or use absolute positioning */
-/* Given the scattered layout, absolute positioning might be used for precise control */
-.portfolio-items {
-    position: relative; /* Container for absolutely positioned items */
-    width: 90%;
-    margin: 20px auto;
-    min-height: 600px; /* Adjust height based on the layout */
 }
 
-/* Styling for individual image containers */
-/* Assuming each image or group is wrapped in a div with a class like 'item' */
-.portfolio-items .item {
-    position: absolute; /* Position elements precisely */
-    border-radius: 15px; /* Rounded corners */
-    overflow: hidden; /* Hide parts of images that might exceed the border radius */
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Optional: Add subtle shadow */
-}
-
-.portfolio-items .item img {
+.titre {
     display: block;
+    margin: 30px auto 0 auto;
+    width: 60%;
+    min-width: 370px;
+    max-width: 700px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 340px 180px 275px;
+    grid-template-rows: 210px 210px 210px;
+    gap: 25px 35px;
+    justify-content: center;
+    margin: 30px auto 0 auto;
+    width: 900px;
+}
+
+.badge {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    border-radius: 28px;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensure images cover their containers */
+    object-fit: cover;
+    box-shadow: 0 3px 12px #0001;
 }
 
-/* Positioning specific items based on the reference image */
-/* You will need to adjust top, left, width, and height values based on your HTML structure and desired pixel-perfect layout */
-
-/* Example positioning (these values are approximate and need fine-tuning) */
-.item.id-card {
-    top: 50px;
-    left: 5%;
-    width: 200px;
-    height: 300px;
-    background-color: #42A5F5; /* Background color similar to the card */
+.cyber {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    background: #4ef0be;
+    border-radius: 28px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 23px;
 }
 
-.item.security-icon {
-    top: 80px;
-    left: 30%;
-    width: 150px;
-    height: 150px;
-    background-color: #81C784; /* Green background */
-}
-
-.item.social-icons {
-    top: 40px;
-    left: 50%;
-    width: 250px; /* Adjust width to fit the three icons */
-    height: 80px; /* Adjust height */
-    display: flex; /* Arrange icons in a row */
+.socials {
+    grid-row: 1 / 2;
+    grid-column: 3 / 4;
+    display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px;
-    /* No specific background shown for the group, icons have their own */
+    background: transparent;
+    padding-top: 40px;
 }
 
-.item.social-icons img {
-    width: 60px; /* Size of individual icons */
-    height: 60px;
-    border-radius: 50%; /* Make icons circular */
-    /* Background colors are part of the icon images */
+.socials img {
+    height: 55px;
+    margin: 0 8px;
 }
 
-.item.youtube-minecraft {
-    top: 350px;
-    left: 10%;
-    width: 250px;
-    height: 150px;
-    background-color: #42A5F5; /* Blue background */
-    /* This item contains multiple overlapping images, may need specific HTML structure and CSS */
+.paco-repeat {
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    border-radius: 28px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.item.fiverr-logo {
-    top: 300px;
-    left: 40%;
-    width: 180px;
-    height: 180px;
-    background-color: #4CAF50; /* Green background */
+.bubbles {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    border-radius: 28px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.item.instagram-screenshot {
-    top: 250px;
-    left: 65%;
-    width: 220px;
-    height: 400px; /* Adjust height based on the screenshot size */
-    background-color: white; /* Background behind the screenshot */
-    border: 5px solid black; /* Border to mimic phone screen */
-    border-radius: 20px; /* Rounded corners for the phone frame */
-    padding: 10px; /* Inner padding if needed */
-    box-sizing: border-box; /* Include padding in element's total width and height */
+.fiverr {
+    grid-row: 2 / 4;
+    grid-column: 2 / 3;
+    border-radius: 26px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #173F15;
 }
 
-
-/* Copyright notice */
-/* Assuming it's a p tag or div with a class */
-.copyright {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: white; /* Or the exact color */
-    font-size: 0.9em;
+.insta {
+    grid-row: 3 / 4;
+    grid-column: 3 / 4;
+    border-radius: 26px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #8ddaee;
 }
 
-/* Add more specific styles and media queries for responsiveness if needed */
-/* To achieve pixel-perfect layout, you will likely need to use exact pixel values and potentially adjust for different screen sizes */
+footer {
+    font-family: Arial Black, Arial, sans-serif;
+    font-size: 1.1em;
+    text-align: left;
+    margin: 40px 0 8px 18px;
+}
+
+@media (max-width: 950px) {
+    .main-container {
+        width: 99vw;
+    }
+    .grid {
+        width: 99vw;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(7, 200px);
+        gap: 20px;
+    }
+}
